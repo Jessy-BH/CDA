@@ -1,6 +1,6 @@
-package tamagotchi;
+package tp5;
 
-public class MainScript {
+public class MainScriptCat {
 	
 	public static void main(String[] args) {
 		

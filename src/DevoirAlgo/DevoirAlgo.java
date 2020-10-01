@@ -1,20 +1,30 @@
 package DevoirAlgo;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class DevoirAlgo {
 
 	public static void main(String[] args) {
-		
+		Random random = new Random();
 		int scoreJoueur = 0;
 		int scorePnj = 0;
-		
-		while (scoreJoueur != 3 || scorePnj != 3) {
-			
-			choixJoueur();
+		choixJoueur();
 				
-			System.out.println("Player Score :" + scoreJoueur + "NPC score : " + scorePnj);			
+		while (scoreJoueur != 3 && scorePnj != 3) {
+			switch (tour(choixJoueur(), random.nextInt(3)+1)){
+			case 1 : 
+				scoreJoueur++;
+				break;
+			case 2 :
+				scorePnj++;
+				break;
+			}
+			System.out.println("Votre score : " + scoreJoueur + " " + "Score PNJ : " + scorePnj);
 		}
+		
+		
+		
 	}
 
 	public static int choixJoueur() {
@@ -57,11 +67,23 @@ public class DevoirAlgo {
 		return objet;
 	}
 	
-	/*
+	
 	public static int tour (int choixJoueur, int choixPnj) {
 		
 		int resultat;
 		
-		System.out.println("Vous avez choisi " + selectionJoueur);
-	}*/
+		System.out.println("Vous avez choisi " + selectionJoueur(choixJoueur) + " le choix du PNJ est : " + selectionJoueur(choixPnj));
+		
+		if (choixJoueur ==1 && choixPnj == 3 || choixJoueur == 2 && choixPnj == 1 || choixJoueur == 3 && choixPnj == 2) {
+			System.out.println("Vous avez gagné !");
+			resultat = 1;	
+		}else if (choixJoueur == choixPnj) {
+			System.out.println("Égalité, il n'y a pas de vainqueur.");
+			resultat = 0;
+		}else {
+			System.out.println("Vous avez perdu.");
+			resultat = 2;
+		}
+		return resultat;
+	}
 }

@@ -143,7 +143,7 @@ public class TP3 {
 		// Algo vérifier les dates
 		
 		
-		saisirDate(29, 02, 2000);
+		saisirDate(37, 14, 2001);
 			
 	}
 
