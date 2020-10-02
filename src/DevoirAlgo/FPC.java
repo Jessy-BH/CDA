@@ -7,26 +7,29 @@ public class FPC {
 	
 	public static void main(String[] args) {
 
-		String arme[] = { "la pierre", "les ciseaux", "la feuille" };
-		String message[] = { arme[0] + " casse " + arme[1], arme[2] + " recouvre " + arme[0],
-				arme[1] + " coupent " + arme[2] };
+		int scoreJoueur = 0;
+		int scorePnj = 0;
+		
+		String objet[] = { "La pierre", "Les ciseaux", "La feuille" };
+		String message[] = { objet[0] + " casse " + objet[1], objet[2] + " recouvre " + objet[0],
+				objet[1] + " coupent " + objet[2] };
 		int resultat[] = { 0, 2, 1 };
-		// affichage menu
+		// afficher sélection 
 		for (int i = 0; i < 3; i++) {
-			System.out.println(i + ". " + arme[i]);
+			System.out.println(i + ". " + objet[i]);
 		}
-		// choix du joueur 1 : l'humain
+		// choix joueur
 		int j1 = -1;
 		do {
 			try {
-				j1 = (new InputStreamReader(System.in)).read() - 48; // ascii
+				j1 = (new InputStreamReader(System.in)).read() - 48; 
 			} catch (IOException ioe) {
 				ioe.printStackTrace();
 				System.exit(0);
 			}
 		} while (j1 < 0 || j1 > 2);
-		int j2 = (int) (Math.random() * 3); // choix du joueur 2 : la machine
-		System.out.println("J'ai choisi " + arme[j2]);
+		int j2 = (int) (Math.random() * 3); // choix PNJ
+		System.out.println("Le PNJ a choisi " + objet[j2]);
 		if (j1 == j2) {
 			System.out.println("On a choisi pareil ! ");
 			System.exit(0);
@@ -34,9 +37,16 @@ public class FPC {
 		int i = j1 + j2 - 1;
 		System.out.println(message[i]);
 		if (j1 == resultat[i]) {
-			System.out.println("Tu gagnes");
-		} else {
 			System.out.println("Je gagne");
+			scoreJoueur++;
+			
+		} else {
+			System.out.println("PNJ gagne");
+			scorePnj++;
+		}
+		System.out.println("Votre score : " + scoreJoueur + "Score PNJ  : " + scorePnj);
+		while (scoreJoueur != 3 || scorePnj != 3) {
+			i++;
 		}
 	}
 }
